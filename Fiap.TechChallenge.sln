@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.TechChallenge.Api", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.TechChallenge.WebPage", "Fiap.TechChallenge.WebPage\Fiap.TechChallenge.WebPage.csproj", "{7676A96A-7E6E-4DAD-AE91-66BAE34DC8F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.TechChallenge.Domain", "Fiap.TechChallenge.Domain\Fiap.TechChallenge.Domain.csproj", "{76449E93-DB7E-446E-BC7F-D9E5CD614EE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.TechChallenge.Infra", "Fiap.TechChallenge.Infra\Fiap.TechChallenge.Infra.csproj", "{22E79F34-1F27-4326-9449-5A33F0BBC819}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{7676A96A-7E6E-4DAD-AE91-66BAE34DC8F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7676A96A-7E6E-4DAD-AE91-66BAE34DC8F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7676A96A-7E6E-4DAD-AE91-66BAE34DC8F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76449E93-DB7E-446E-BC7F-D9E5CD614EE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76449E93-DB7E-446E-BC7F-D9E5CD614EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76449E93-DB7E-446E-BC7F-D9E5CD614EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76449E93-DB7E-446E-BC7F-D9E5CD614EE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E79F34-1F27-4326-9449-5A33F0BBC819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E79F34-1F27-4326-9449-5A33F0BBC819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E79F34-1F27-4326-9449-5A33F0BBC819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E79F34-1F27-4326-9449-5A33F0BBC819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
