@@ -32,6 +32,11 @@ root
     .Produces<MemeDto>()
     .Produces<ICollection<Notification>>(statusCode: 400);
 
+root
+    .MapGet("meme", async (IMemeService service) =>
+        await service.GetAllMemes())
+    .Produces<ICollection<MemeDto>>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

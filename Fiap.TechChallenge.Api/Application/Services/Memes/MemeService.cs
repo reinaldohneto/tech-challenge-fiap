@@ -37,4 +37,12 @@ public class MemeService : IMemeService
 
         return _mapper.Map<MemeDto>(memeDomain);
     }
+
+    public async Task<ICollection<MemeDto>> GetAllMemes()
+    {
+        var memes = await _unitOfWork
+            .MemeRepository.GetAll();
+
+        return _mapper.Map<ICollection<MemeDto>>(memes);
+    }
 }
