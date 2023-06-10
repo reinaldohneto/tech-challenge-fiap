@@ -45,9 +45,8 @@ public class MemeService : IMemeService
 
         return _mapper.Map<ICollection<MemeDto>>(memes);
     }
-}
 
- public async Task<MemeDto> GetMemeById(string id)
+     public async Task<MemeDto> GetMemeById(string id)
     {
         
         var id_guid = Guid.Parse(id);
