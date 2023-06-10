@@ -23,7 +23,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
             .ToListAsync();
     }
 
-    public async Task<TEntity?> GetById(int id)
+    public async Task<TEntity?> GetById(Guid id)
         => await DbSet.FindAsync(id);
 
     public async Task<TEntity> Create(TEntity entity)
@@ -40,14 +40,14 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 
     public void Update(TEntity entity)
         => DbSet.Update(entity);
-
-    public async Task<bool> Delete(int id)
+    public async Task<bool> Delete(Guid id)
     {
         var register = await DbSet.FindAsync(id);
-
+        
         if (register == null) return false;
         
-        DbSet.Remove(register);
+        await DbSet.Where(m => m.Id == id).ExecuteDeleteAsync();
+        
         return true;
     }
 }

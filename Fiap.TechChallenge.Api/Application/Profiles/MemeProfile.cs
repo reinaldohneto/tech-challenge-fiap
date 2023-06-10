@@ -10,5 +10,7 @@ public class MemeProfile : Profile
     {
         CreateMap<MemeInputDto, Meme>();
         CreateMap<Meme, MemeDto>();
+        CreateMap<Meme, MemeUpdateDto>();
+        CreateMap<MemeInputUpdateDto, Meme>();
     }
 }
