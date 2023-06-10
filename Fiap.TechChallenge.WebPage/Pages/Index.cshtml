@@ -4,27 +4,28 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="container">
+<div class="container div-container">
     @if (Model.MemeCatalog.Any())
     {
-        <div class="esh-catalog-items row">
+        <div class="row">
         @foreach (var catalogItem in Model.MemeCatalog)
         {
-        <div class="esh-catalog-item col-md-4">
-        <partial name="_product" for="@catalogItem" />
-        </div>
-    }
+            <div class="component-item col-md-4">
+                <partial name="_component" for="@catalogItem" />
+            </div>
+        }
     </div>
     }
     else
     {
         <div class="row">
-            THERE ARE NO RESULTS THAT MATCH YOUR SEARCH
+            <h1 class="white-text">Não há nenhum meme cadastrado.</h1>
+            <p class="white-text">Cadastre um novo meme clicando no botão a baixo.</p>
         </div>
     }
 </div>
 <div class="container">
-    <button class="round">
+    <button class="round-btn">
         <img src="~/images/add.png" alt="Adicionar novo meme" height="40" width="40" />
     </button>
 </div>
