@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.TechChallenge.Domain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.TechChallenge.Infra", "Fiap.TechChallenge.Infra\Fiap.TechChallenge.Infra.csproj", "{22E79F34-1F27-4326-9449-5A33F0BBC819}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.TechChallenge.WebPage", "Fiap.TechChallenge.WebPage\Fiap.TechChallenge.WebPage.csproj", "{93630DCE-AE05-4B67-AF56-3774EA6694BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiap.TechChallenge.WebPage", "Fiap.TechChallenge.WebPage\Fiap.TechChallenge.WebPage.csproj", "{93630DCE-AE05-4B67-AF56-3774EA6694BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C0B71A6-4F77-4CEC-BEB3-FFAFEF5F8917}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
