@@ -1,0 +1,52 @@
+﻿@page
+@model CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container div-container">
+    <div class="row">
+        <div>
+            <h3 class="text-white form-group col-md-6 offset-md-3">Adicionar meme</h3>
+        </div>
+        <hr/>
+            <form method="post">
+                <div class="form-group col-md-6 offset-md-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Meme.Name" class="control-label text-white"></label>
+                    <input asp-for="Meme.Name" class="form-control" />
+                    <span asp-validation-for="Meme.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <label asp-for="Meme.Description" class="control-label text-white"></label>
+                    <input asp-for="Meme.Description" class="form-control" />
+                    <span asp-validation-for="Meme.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check mt-3">
+                    <label class="form-check-label">
+                        <label asp-for="Meme.IsVideo" class="control-label text-white"></label>
+                        <input class="form-check-input text-white" asp-for="Meme.IsVideo" /> @Html.DisplayNameFor(model => model.Meme.IsVideo)
+                    </label>
+                </div>
+                <div class="form-group mt-2">
+                    <label asp-for="Meme.Link" class="control-label text-white"></label>
+                    <input asp-for="Meme.Link" class="form-control" />
+                    <span asp-validation-for="Meme.Link" class="text-danger"></span>
+                </div>                
+                <div class="form-group mt-2">
+                    <input type="submit" value="Adicionar" class="btn btn-primary" />
+                    <a asp-page="Index" class="btn btn-secondary">Voltar</a>                    
+                </div>                
+                </div>
+            </form>
+        
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
