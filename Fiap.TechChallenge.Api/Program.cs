@@ -16,12 +16,9 @@ builder.Services.DependencyInjectionConfig();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 var root = app.MapGroup("/v1/")
     .AddEndpointFilter<NotificationFilter>();
