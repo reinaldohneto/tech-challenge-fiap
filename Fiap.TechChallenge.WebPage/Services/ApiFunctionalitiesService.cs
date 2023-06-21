@@ -1,26 +1,29 @@
-﻿using Azure;
-using Fiap.TechChallenge.Api.Application.Dtos;
+﻿using Fiap.TechChallenge.Api.Application.Dtos;
 using Fiap.TechChallenge.Api.Application.Services.Memes;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
-using Microsoft.Win32;
 using Newtonsoft.Json;
-using System.Net.Http.Json;
-using System.Text;
 
 namespace Fiap.TechChallenge.WebPage.Services
 {
     public class ApiFunctionalitiesService : IMemeService
     {
+        private readonly IConfiguration _configuration;
+        private readonly string? _baseUrl; 
+
+        public ApiFunctionalitiesService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _baseUrl = _configuration.GetValue<string>("ApiUrl");
+        }
+
         [HttpPost]
         public async Task<MemeDto> CreateMeme(MemeInputDto dto)
         {
             
             JsonContent content = JsonContent.Create(dto);
-            var url = "https://localhost:7129/v1/meme/";
             
             HttpClient client = new HttpClient();
-            var result = await client.PostAsync(url, content);
+            var result = await client.PostAsync(_baseUrl, content);
 
             return new MemeDto { };
         }
@@ -28,7 +31,7 @@ namespace Fiap.TechChallenge.WebPage.Services
         public async Task<ICollection<MemeDto>> GetAllMemes()
         {
             HttpClient client = new HttpClient();
-            var apiCall = await client.GetAsync("https://localhost:7129/v1/meme").Result.Content.ReadAsStringAsync();
+            var apiCall = await (await client.GetAsync(_baseUrl)).Content.ReadAsStringAsync();
 
             var desserializedResult = JsonConvert.DeserializeObject<List<MemeDto>>(apiCall);
             return desserializedResult;
