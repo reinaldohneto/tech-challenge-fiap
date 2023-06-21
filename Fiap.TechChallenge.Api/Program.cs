@@ -37,6 +37,23 @@ root
         await service.GetAllMemes())
     .Produces<ICollection<MemeDto>>();
 
+root
+    .MapGet("meme/{id}", async (IMemeService service,string id) =>
+        await service.GetMemeById(id))
+    .Produces<ICollection<MemeDto>>();
+
+root
+    .MapDelete("meme/{id}", async (IMemeService service,string id) =>
+        await service.DeleteMemeById(id))
+    .Produces<ICollection<MemeDeleteDto>>();
+
+root
+    .MapPut("meme", async (IMemeService service,
+        MemeInputUpdateDto dto) => await service.UpdateMemeById(dto))
+    .Produces<MemeUpdateDto>()
+    .Produces<ICollection<Notification>>(statusCode: 400);
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
