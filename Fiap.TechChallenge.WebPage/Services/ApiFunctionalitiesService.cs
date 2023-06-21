@@ -1,14 +1,28 @@
-﻿using Fiap.TechChallenge.Api.Application.Dtos;
+﻿using Azure;
+using Fiap.TechChallenge.Api.Application.Dtos;
 using Fiap.TechChallenge.Api.Application.Services.Memes;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using Microsoft.Win32;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
+using System.Text;
 
 namespace Fiap.TechChallenge.WebPage.Services
 {
     public class ApiFunctionalitiesService : IMemeService
     {
-        public Task<MemeDto> CreateMeme(MemeInputDto dto)
+        [HttpPost]
+        public async Task<MemeDto> CreateMeme(MemeInputDto dto)
         {
-            throw new NotImplementedException();
+            
+            JsonContent content = JsonContent.Create(dto);
+            var url = "https://localhost:7129/v1/meme/";
+            
+            HttpClient client = new HttpClient();
+            var result = await client.PostAsync(url, content);
+
+            return new MemeDto { };
         }
 
         public async Task<ICollection<MemeDto>> GetAllMemes()
@@ -18,6 +32,6 @@ namespace Fiap.TechChallenge.WebPage.Services
 
             var desserializedResult = JsonConvert.DeserializeObject<List<MemeDto>>(apiCall);
             return desserializedResult;
-        }
+        }        
     }
 }
