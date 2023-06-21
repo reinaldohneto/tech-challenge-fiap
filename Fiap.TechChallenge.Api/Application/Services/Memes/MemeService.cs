@@ -54,7 +54,6 @@ public class MemeService : IMemeService
         var meme = await _unitOfWork
         .MemeRepository.GetById(id_guid);
 
-        System.Diagnostics.Debug.WriteLine(meme);
         
         
         return _mapper.Map<MemeDto>(meme);
