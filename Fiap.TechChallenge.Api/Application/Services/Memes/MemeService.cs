@@ -74,7 +74,6 @@ public class MemeService : IMemeService
     {
 
         var memeDomain = _mapper.Map<Meme>(dto);
-        //var id_guid = Guid.Parse(id);
         _unitOfWork
         .MemeRepository.Update(memeDomain);
 
