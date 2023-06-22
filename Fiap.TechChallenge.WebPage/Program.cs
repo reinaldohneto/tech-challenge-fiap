@@ -1,5 +1,7 @@
 using Fiap.TechChallenge.Api.Application.Services.Memes;
+using Fiap.TechChallenge.Api.Configurations;
 using Fiap.TechChallenge.WebPage.Services;
+using ServiceStack.Configuration;
 
 namespace Fiap.TechChallenge.WebPage
 {
@@ -11,7 +13,14 @@ namespace Fiap.TechChallenge.WebPage
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddSingleton<IMemeService>(new ApiFunctionalitiesService());
+            //builder.Services.AddSingleton<IMemeService>(new ApiFunctionalitiesService());
+            builder.Services.AddSingleton<IMemeService, ApiFunctionalitiesService>();
+            //builder.Services.Configure<UrlConfig>(builder.Configuration.GetSection("UrlConfig"));
+            
+
+            //builder.Configuration.GetValue<string>("UrlConfig");
+
+            
 
             var app = builder.Build();
 
