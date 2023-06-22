@@ -16,7 +16,20 @@ namespace Fiap.TechChallenge.WebPage.Services
             _baseUrl = _configuration.GetValue<string>("ApiUrl");
         }
 
-        [HttpPost]
+        public async Task<ICollection<MemeDto>> GetAllMemes()
+        {
+            HttpClient client = new HttpClient();
+            var apiCall = await (await client.GetAsync(_baseUrl)).Content.ReadAsStringAsync();
+
+            var desserializedResult = JsonConvert.DeserializeObject<List<MemeDto>>(apiCall);
+            return desserializedResult;
+        }
+
+        public Task<MemeDto> GetMemeById(string id)
+        {
+            throw new NotImplementedException();
+        }
+                
         public async Task<MemeDto> CreateMeme(MemeInputDto dto)
         {
             
@@ -25,16 +38,16 @@ namespace Fiap.TechChallenge.WebPage.Services
             HttpClient client = new HttpClient();
             var result = await client.PostAsync(_baseUrl, content);
 
-            return new MemeDto { };
+            return null;
         }
 
-        public async Task<ICollection<MemeDto>> GetAllMemes()
+        public Task UpdateMemeById(MemeInputUpdateDto dto)
         {
-            HttpClient client = new HttpClient();
-            var apiCall = await (await client.GetAsync(_baseUrl)).Content.ReadAsStringAsync();
-
-            var desserializedResult = JsonConvert.DeserializeObject<List<MemeDto>>(apiCall);
-            return desserializedResult;
-        }        
+            throw new NotImplementedException();
+        }
+        public Task<bool> DeleteMemeById(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
