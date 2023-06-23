@@ -16,7 +16,7 @@ public class MemeService : IMemeService
     private readonly IMapper _mapper;
     private readonly IConfiguration _configuration;
 
-    public MemeService(NotificationContext notificationContext, 
+    public MemeService(NotificationContext notificationContext,
         IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration)
     {
         _notificationContext = notificationContext;
@@ -58,7 +58,7 @@ public class MemeService : IMemeService
     private async Task<string> UploadImage(string image)
     {
         var blobClient = new BlobClient(_configuration
-            .GetConnectionString("ImagesBlob"), 
+            .GetConnectionString("ImagesBlob"),
             _configuration.GetValue<string>("ContainerBlobName"), Guid.NewGuid() + ".jpg");
 
         byte[] imageBytes = Convert.FromBase64String(image);
@@ -68,33 +68,32 @@ public class MemeService : IMemeService
 
         return blobClient.Uri.AbsoluteUri;
     }
-}
 
-     public async Task<MemeDto> GetMemeById(string id)
+    public async Task<MemeDto> GetMemeById(string id)
     {
-        
+
         var id_guid = Guid.Parse(id);
 
         var meme = await _unitOfWork
         .MemeRepository.GetById(id_guid);
 
-        
-        
-        return _mapper.Map<MemeDto>(meme);
-    }    
 
- public async Task <bool> DeleteMemeById(string id)
+
+        return _mapper.Map<MemeDto>(meme);
+    }
+
+    public async Task<bool> DeleteMemeById(string id)
     {
-        
+
         var id_guid = Guid.Parse(id);
 
         var meme = await _unitOfWork
-        .MemeRepository.Delete(id_guid);      
-        
+        .MemeRepository.Delete(id_guid);
+
         return meme;
     }
 
- public async Task  UpdateMemeById(MemeInputUpdateDto dto)
+    public async Task UpdateMemeById(MemeInputUpdateDto dto)
     {
 
         var memeDomain = _mapper.Map<Meme>(dto);
@@ -102,5 +101,5 @@ public class MemeService : IMemeService
         .MemeRepository.Update(memeDomain);
 
         await _unitOfWork.CommitAsync();
-    }         
+    }
 }
