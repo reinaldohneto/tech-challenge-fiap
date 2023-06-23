@@ -20,7 +20,7 @@ public class MemeInputDto
     public string Description { get; set; }
     [DisplayName("É video?")]
     public bool IsVideo { get; set; }
-    public string Link { get; set; }
+    public string Base64ImageOrVideoLink { get; set; }
 
 
 

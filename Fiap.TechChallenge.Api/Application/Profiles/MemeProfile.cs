@@ -8,7 +8,10 @@ public class MemeProfile : Profile
 {
     public MemeProfile()
     {
-        CreateMap<MemeInputDto, Meme>();
+        CreateMap<MemeInputDto, Meme>()
+            .ForMember(m => m.Link, cfg => 
+                cfg.MapFrom(src => src.IsVideo ? 
+                    src.Base64ImageOrVideoLink : string.Empty));
         CreateMap<Meme, MemeDto>();
     }
 }

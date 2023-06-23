@@ -13,7 +13,10 @@ public class MemeInputDtoValidator : AbstractValidator<MemeInputDto>
         RuleFor(m => m.Description)
             .MinimumLength(1);
 
-        RuleFor(m => m.Link)
-            .Length(10, 250);
+        When(m => m.IsVideo, () =>
+        {
+            RuleFor(m => m.Base64ImageOrVideoLink)
+                .Length(10, 250);
+        });
     }
 }
