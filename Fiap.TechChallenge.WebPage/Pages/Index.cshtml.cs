@@ -61,7 +61,7 @@ namespace Fiap.TechChallenge.WebPage.Pages
             Filter = memeName;
             Console.WriteLine(Filter);
 
-            return Page(); // Optional: Return a specific page or a redirect
+            return Page();
         }
     }
 }
