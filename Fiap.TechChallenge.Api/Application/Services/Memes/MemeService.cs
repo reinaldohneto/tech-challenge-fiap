@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Azure.Identity;
+using Azure.Storage.Blobs;
 using Fiap.TechChallenge.Api.Application.Dtos;
 using Fiap.TechChallenge.Api.Application.Shared;
 using Fiap.TechChallenge.Api.Application.Validators;
@@ -12,13 +14,15 @@ public class MemeService : IMemeService
     private readonly NotificationContext _notificationContext;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IConfiguration _configuration;
 
     public MemeService(NotificationContext notificationContext, 
-        IUnitOfWork unitOfWork, IMapper mapper)
+        IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration)
     {
         _notificationContext = notificationContext;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _configuration = configuration;
     }
 
     public async Task<MemeDto> CreateMeme(MemeInputDto dto)
@@ -30,6 +34,11 @@ public class MemeService : IMemeService
         }
 
         var memeDomain = _mapper.Map<Meme>(dto);
+
+        if (!dto.IsVideo)
+        {
+            memeDomain.Link = await UploadImage(dto.Base64ImageOrVideoLink);
+        }
 
         await _unitOfWork.MemeRepository.Create(memeDomain);
 
@@ -45,6 +54,21 @@ public class MemeService : IMemeService
 
         return _mapper.Map<ICollection<MemeDto>>(memes);
     }
+
+    private async Task<string> UploadImage(string image)
+    {
+        var blobClient = new BlobClient(_configuration
+            .GetConnectionString("ImagesBlob"), 
+            _configuration.GetValue<string>("ContainerBlobName"), Guid.NewGuid() + ".jpg");
+
+        byte[] imageBytes = Convert.FromBase64String(image);
+
+        using var stream = new MemoryStream(imageBytes);
+        await blobClient.UploadAsync(stream);
+
+        return blobClient.Uri.AbsoluteUri;
+    }
+}
 
      public async Task<MemeDto> GetMemeById(string id)
     {
