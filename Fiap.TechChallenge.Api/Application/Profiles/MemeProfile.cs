@@ -13,5 +13,7 @@ public class MemeProfile : Profile
                 cfg.MapFrom(src => src.IsVideo ? 
                     src.Base64ImageOrVideoLink : string.Empty));
         CreateMap<Meme, MemeDto>();
+        CreateMap<Meme, MemeUpdateDto>();
+        CreateMap<MemeInputUpdateDto, Meme>();
     }
 }

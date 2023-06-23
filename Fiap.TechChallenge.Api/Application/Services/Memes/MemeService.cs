@@ -69,3 +69,38 @@ public class MemeService : IMemeService
         return blobClient.Uri.AbsoluteUri;
     }
 }
+
+     public async Task<MemeDto> GetMemeById(string id)
+    {
+        
+        var id_guid = Guid.Parse(id);
+
+        var meme = await _unitOfWork
+        .MemeRepository.GetById(id_guid);
+
+        
+        
+        return _mapper.Map<MemeDto>(meme);
+    }    
+
+ public async Task <bool> DeleteMemeById(string id)
+    {
+        
+        var id_guid = Guid.Parse(id);
+
+        var meme = await _unitOfWork
+        .MemeRepository.Delete(id_guid);      
+        
+        return meme;
+    }
+
+ public async Task  UpdateMemeById(MemeInputUpdateDto dto)
+    {
+
+        var memeDomain = _mapper.Map<Meme>(dto);
+        _unitOfWork
+        .MemeRepository.Update(memeDomain);
+
+        await _unitOfWork.CommitAsync();
+    }         
+}

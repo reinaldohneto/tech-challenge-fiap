@@ -6,4 +6,7 @@ public interface IMemeService
 {
     Task<MemeDto> CreateMeme(MemeInputDto dto);
     Task<ICollection<MemeDto>> GetAllMemes();
+    Task<MemeDto> GetMemeById(string id);
+    Task<bool> DeleteMemeById(string id);
+    Task  UpdateMemeById(MemeInputUpdateDto dto);
 }

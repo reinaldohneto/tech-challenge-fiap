@@ -11,7 +11,7 @@ namespace Fiap.TechChallenge.WebPage
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddSingleton<IMemeService>(new ApiFunctionalitiesService());
+            builder.Services.AddSingleton<IMemeService, ApiFunctionalitiesService>();
 
             var app = builder.Build();
 
