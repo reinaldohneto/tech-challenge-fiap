@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container div-container">
+    @if (Model.MemeCatalog.Any())
+    {
+        <div class="row">
+        @foreach (var catalogItem in Model.MemeCatalog)
+        {
+            <div class="component-item">
+                <partial name="_component" for="@catalogItem" />
+            </div>
+        }
+    </div>
+    }
+    else
+    {
+        <div class="row">
+            <h1 class="white-text">Não há nenhum meme cadastrado.</h1>
+            <p class="white-text">Cadastre um novo meme clicando no botão a baixo.</p>
+        </div>
+    }
+</div>
+<div class="container">
+    <a asp-page="Create" class="round-btn">
+        <img src="~/images/add.png" alt="Adicionar novo meme" width="60%" class="mx-auto d-block" />
+
+    </a>
+    @*<button class="round-btn">
+        <img src="~/images/add.png" alt="Adicionar novo meme" height="40" width="40" />
+    </button>*@
+</div>

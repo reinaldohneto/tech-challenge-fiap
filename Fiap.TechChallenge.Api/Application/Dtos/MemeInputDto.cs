@@ -1,5 +1,6 @@
 ﻿using Fiap.TechChallenge.Api.Application.Validators;
 using FluentValidation.Results;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace Fiap.TechChallenge.Api.Application.Dtos;
@@ -13,10 +14,13 @@ public class MemeInputDto
     [JsonIgnore]
     public ValidationResult ValidationResult { get; private set; }
 
+    [DisplayName("Nome")]
     public string Name { get; set; }
+    [DisplayName("Descrição")]
     public string Description { get; set; }
+    [DisplayName("É video?")]
     public bool IsVideo { get; set; }
-    public string Link { get; set; }
+    public string Base64ImageOrVideoLink { get; set; }
 
 
 
