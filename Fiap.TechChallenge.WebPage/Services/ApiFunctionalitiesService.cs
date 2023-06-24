@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Fiap.TechChallenge.WebPage.Services
+
 {
     public class ApiFunctionalitiesService : IMemeService
     {
@@ -25,9 +26,14 @@ namespace Fiap.TechChallenge.WebPage.Services
             return desserializedResult;
         }
 
-        public Task<MemeDto> GetMemeById(string id)
+        public async Task<MemeDto> GetMemeById(string id)
         {
-            throw new NotImplementedException();
+            HttpClient client = new HttpClient();
+
+            var apiCall = await (await client.GetAsync(_baseUrl+"/" + id)).Content.ReadAsStringAsync();
+            
+            var desserializedResult = JsonConvert.DeserializeObject<MemeDto>(apiCall);
+            return desserializedResult;
         }
                 
         public async Task<MemeDto> CreateMeme(MemeInputDto dto)
@@ -43,7 +49,9 @@ namespace Fiap.TechChallenge.WebPage.Services
 
         public Task UpdateMemeById(MemeInputUpdateDto dto)
         {
-            throw new NotImplementedException();
+            
+        throw new NotImplementedException();
+
         }
         public Task<bool> DeleteMemeById(string id)
         {
