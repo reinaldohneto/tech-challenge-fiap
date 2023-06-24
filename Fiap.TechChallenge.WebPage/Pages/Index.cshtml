@@ -5,6 +5,11 @@
 }
 
 <div class="container div-container">
+    <form asp-page-handler="InputValueChanged">
+        <input type="text" name="memeName" value="@Model.Filter" class="input-text" />
+        <input type="submit" value="Pesquisar" class="input-submit" />
+    </form>
+
     @if (Model.MemeCatalog.Any())
     {
         <div class="row">
@@ -25,11 +30,8 @@
     }
 </div>
 <div class="container">
-    <a asp-page="Create" class="round-btn">
-        <img src="~/images/add.png" alt="Adicionar novo meme" width="60%" class="mx-auto d-block" />
-
-    </a>
-    @*<button class="round-btn">
+    <button class="round-btn">
+        <a asp-page="Create" />
         <img src="~/images/add.png" alt="Adicionar novo meme" height="40" width="40" />
-    </button>*@
+    </button>
 </div>
