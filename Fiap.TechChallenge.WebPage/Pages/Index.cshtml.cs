@@ -59,8 +59,6 @@ namespace Fiap.TechChallenge.WebPage.Pages
         public IActionResult OnPostInputValueChanged(string memeName)
         {
             Filter = memeName;
-            Console.WriteLine(Filter);
-
             return Page();
         }
     }

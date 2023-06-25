@@ -1,6 +1,5 @@
 ﻿using Fiap.TechChallenge.Api.Application.Dtos;
 using Fiap.TechChallenge.Api.Application.Services.Memes;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Fiap.TechChallenge.WebPage.Services
@@ -9,7 +8,8 @@ namespace Fiap.TechChallenge.WebPage.Services
     public class ApiFunctionalitiesService : IMemeService
     {
         private readonly IConfiguration _configuration;
-        private readonly string? _baseUrl; 
+        private readonly string? _baseUrl;
+        private readonly HttpClient client = new HttpClient();
 
         public ApiFunctionalitiesService(IConfiguration configuration)
         {
@@ -19,7 +19,6 @@ namespace Fiap.TechChallenge.WebPage.Services
 
         public async Task<ICollection<MemeDto>> GetAllMemes()
         {
-            HttpClient client = new HttpClient();
             var apiCall = await (await client.GetAsync(_baseUrl)).Content.ReadAsStringAsync();
 
             var desserializedResult = JsonConvert.DeserializeObject<List<MemeDto>>(apiCall);
@@ -28,34 +27,29 @@ namespace Fiap.TechChallenge.WebPage.Services
 
         public async Task<MemeDto> GetMemeById(string id)
         {
-            HttpClient client = new HttpClient();
+            var apiCall = await (await client.GetAsync(_baseUrl + "/" + id)).Content.ReadAsStringAsync();
 
-            var apiCall = await (await client.GetAsync(_baseUrl+"/" + id)).Content.ReadAsStringAsync();
-            
             var desserializedResult = JsonConvert.DeserializeObject<MemeDto>(apiCall);
             return desserializedResult;
         }
-                
+
         public async Task<MemeDto> CreateMeme(MemeInputDto dto)
         {
-            
             JsonContent content = JsonContent.Create(dto);
-            
-            HttpClient client = new HttpClient();
             var result = await client.PostAsync(_baseUrl, content);
 
             return null;
         }
 
-        public Task UpdateMemeById(MemeInputUpdateDto dto)
+        public async Task UpdateMemeById(MemeInputUpdateDto dto)
         {
-            
-        throw new NotImplementedException();
-
+            JsonContent content = JsonContent.Create(dto);
+            var result = await client.PutAsync(_baseUrl, content);
         }
-        public Task<bool> DeleteMemeById(string id)
+        public async Task<bool> DeleteMemeById(string id)
         {
-            throw new NotImplementedException();
+            var apiCall = await (await client.DeleteAsync(_baseUrl + "/" + id)).Content.ReadAsStringAsync();
+            return bool.Parse(apiCall);
         }
     }
 }

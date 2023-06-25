@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Biblioteca de Memes";
 }
 
 <div class="container div-container">
@@ -15,7 +15,7 @@
         <div class="row">
         @foreach (var catalogItem in Model.MemeCatalog)
         {
-            <div class="component-item">
+                <div class="component-div">
                 <partial name="_component" for="@catalogItem" />
             </div>
         }

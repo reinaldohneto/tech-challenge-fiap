@@ -1,8 +1,11 @@
 ﻿@model Fiap.TechChallenge.Api.Application.Dtos.MemeDto
 
-<form>
-    <img class="component-thumbnail" src="@Model.Link" />
-    <div class="component-name">
-        <span>@Model.Name</span>
-    </div>
+<form asp-page="./MemeDetails" method="get">
+    <button class="component-item">
+        <img class="component-thumbnail" src="@Model.Link" />
+        <div class="component-name">
+            <span>@Model.Name</span>
+        </div>
+    </button>
+    <input type="hidden" asp-for="@Model.Id" name="id" />
 </form>
