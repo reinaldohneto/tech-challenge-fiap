@@ -11,6 +11,12 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
+    <Compile Remove="Pages\Memes\**" />
+    <Content Remove="Pages\Memes\**" />
+    <EmbeddedResource Remove="Pages\Memes\**" />
+    <None Remove="Pages\Memes\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Remove="Services\IApiService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -27,10 +33,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fiap.TechChallenge.Api\Fiap.TechChallenge.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Memes\" />
   </ItemGroup>
 
 </Project>

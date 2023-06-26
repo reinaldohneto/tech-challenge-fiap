@@ -1,0 +1,30 @@
+﻿@page
+@model MemeDetailsModel
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div class="container div-container meme-details-div">
+    <form method="post">
+        <div class="div-grid">
+            <img src="@Model.SelectedMeme.Link" class="image-class" alt="@Model.SelectedMeme.Description" />
+            <div class="container">
+                @*Nome do meme*@
+                <div class="row">
+                    <label class="label-text">Nome</label>
+                    <input class="input-name" name="name" value="@Model.SelectedMeme.Name" />
+                </div>
+                @*Descrição do meme*@
+                <div class="row">
+                    <label class="label-text">Descrição</label>
+                    <input class="input-name" name="description" value="@Model.SelectedMeme.Description">
+                </div>
+            </div>
+        </div>
+        <div class="div-bottom">
+            <input type="submit" class="button-bottom" asp-page-handler="Return" value="Voltar"/>
+            <input type="submit" class="button-bottom" asp-page-handler="Delete" value="Apagar" />
+            <input type="submit" class="button-bottom" value="Atualizar" />
+        </div>
+    </form>
+</div>
