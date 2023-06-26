@@ -24,10 +24,10 @@ namespace Fiap.TechChallenge.WebPage.Pages
             _memoryCache = memoryCache;
         }
 
-        public void OnGet(string id)
+        public async Task OnGet(string id)
         {
             _id = id;
-            SelectedMeme = _memeFunctionalitiesService.GetMemeById(_id).Result;
+            SelectedMeme = await _memeFunctionalitiesService.GetMemeById(_id);
 
             _memoryCache.Set("Meme", SelectedMeme);
         }

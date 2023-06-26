@@ -13,6 +13,8 @@ public class MemeInputDto
     public bool Invalid => !Valid;
     [JsonIgnore]
     public ValidationResult ValidationResult { get; private set; }
+    public IFormFile Upload { get; set; }
+
 
     [DisplayName("Nome")]
     public string Name { get; set; }

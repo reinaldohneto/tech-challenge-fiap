@@ -3,11 +3,14 @@
 @{
     ViewData["Title"] = "Detalhes";
 }
-
+<body onload="onLoadHidden()">
 <div class="container div-container meme-details-div">
     <form method="post">
         <div class="div-grid">
-            <img src="@Model.SelectedMeme.Link" class="image-class" alt="@Model.SelectedMeme.Description" />
+            <img id="imgMeme" src="@Model.SelectedMeme.Link" class="image-class" alt="@Model.SelectedMeme.Description" />
+            <iframe width="720px" height="480px" title="@Model.SelectedMeme.Name" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
+                    style="display: none; margin-top: 20px" id="iframeVideo" src="@Model.SelectedMeme.Link"></iframe>
+            <input type="hidden" asp-for="SelectedMeme.IsVideo" id="hfIsVideo"/>
             <div class="container">
                 @*Nome do meme*@
                 <div class="row">
@@ -27,4 +30,25 @@
             <input type="submit" class="button-bottom" value="Atualizar" />
         </div>
     </form>
-</div>
+    </div>
+</body>
+
+
+@section Scripts {
+    <script>
+        function onLoadHidden() {
+            var img = document.getElementById('imgMeme');
+            var video = document.getElementById('iframeVideo');
+            if (document.getElementById('hfIsVideo').value === 'True') {
+                img.style.display = 'none';
+                video.style.display = '';
+                video.style.cssText += 'object-fit-sm-contain border rounded'
+            }
+            else {
+                img.style.display = '';
+                img.classList.add('image-class')
+                video.style.display = 'none';
+            }
+        }
+    </script>
+}

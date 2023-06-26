@@ -5,14 +5,13 @@
     ViewData["Title"] = "Create";
 }
 
-
 <div class="container div-container">
     <div class="row">
         <div>
             <h3 class="text-white form-group col-md-6 offset-md-3">Adicionar meme</h3>
         </div>
         <hr/>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="form-group col-md-6 offset-md-3">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -28,12 +27,14 @@
                 <div class="form-group form-check mt-3">
                     <label class="form-check-label">
                         <label asp-for="Meme.IsVideo" class="control-label text-white"></label>
-                        <input class="form-check-input text-white" asp-for="Meme.IsVideo" /> @Html.DisplayNameFor(model => model.Meme.IsVideo)
+                        <input id="cbxIsVideo" onchange="onChangeCbx()" class="form-check-input text-white" asp-for="Meme.IsVideo" /> @Html.DisplayNameFor(model => model.Meme.IsVideo)
                     </label>
                 </div>
                 <div class="form-group mt-2">
-                    <label asp-for="Meme.Base64ImageOrVideoLink" class="control-label text-white"></label>
-                    <input asp-for="Meme.Base64ImageOrVideoLink" class="form-control" />
+                    <label id="lblImg" asp-for="Meme.Upload" class="control-label text-white">Faça upload da imagem</label>
+                    <label id="lblVideo" style="display: none" asp-for="Meme.Base64ImageOrVideoLink" class="control-label text-white">Insira o link para o vídeo do Youtube</label>
+                    <input id="fileInput" type="file" asp-for="Meme.Upload" class="form-control"/>
+                    <input style="display: none" id="inputLinkYoutube" asp-for="Meme.Base64ImageOrVideoLink" class="form-control" />
                     <span asp-validation-for="Meme.Base64ImageOrVideoLink" class="text-danger"></span>
                 </div>                
                 <div class="form-group mt-2">
@@ -49,4 +50,25 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>    
+        function onChangeCbx(){
+            const cbxState = document.getElementById('cbxIsVideo').checked;
+
+            if(cbxState){
+                document.getElementById('fileInput').style.display = 'none';
+                document.getElementById('lblImg').style.display = 'none';
+                document.getElementById('lblVideo').style.display = 'block';
+                document.getElementById('inputLinkYoutube').style.display = 'block';
+            }
+            else
+            {
+                document.getElementById('fileInput').style.display = 'block';
+                document.getElementById('lblImg').style.display = 'block';
+                document.getElementById('lblVideo').style.display = 'none';
+                document.getElementById('inputLinkYoutube').style.display = 'none';
+            }
+        }
+    
+    </script>
 }
