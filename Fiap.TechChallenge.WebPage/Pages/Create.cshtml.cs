@@ -38,8 +38,8 @@ namespace Fiap.TechChallenge.WebPage.Pages
 
                     Meme.Base64ImageOrVideoLink = base64Image;
                 }
-                else
-                    Meme.Upload = null;
+
+            Meme.Upload = null;
 
             //if (!ModelState.IsValid || _memeFunctionalitiesService.Meme == null || Meme == null)
             //{
