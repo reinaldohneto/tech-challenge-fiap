@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Fiap.TechChallenge.Api.Application.Services.Memes;
+using Fiap.TechChallenge.Api.Application.Services.Noticias;
 using Fiap.TechChallenge.Api.Application.Shared;
 using Fiap.TechChallenge.Infra.Infrastructure;
 
@@ -14,6 +14,6 @@ public static class DependencyInjectionConfiguration
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<NotificationContext>();
 
-        services.AddScoped<IMemeService, MemeService>();
+        services.AddScoped<INoticiaService, NoticiaService>();
     }
 }

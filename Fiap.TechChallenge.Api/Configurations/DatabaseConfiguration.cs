@@ -1,4 +1,5 @@
 ﻿using Fiap.TechChallenge.Infra.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.TechChallenge.Api.Configurations;
@@ -10,6 +11,8 @@ public static class DatabaseConfiguration
     {
         services.AddDbContext<SqlServerContext>(opt => 
             opt.UseSqlServer(config.GetValue<string>("ConnectionStrings:Fiap.TechChallenge.SqlServer"),
-                b => b.MigrationsAssembly("Fiap.TechChallenge.Infra")));
+                b => b.MigrationsAssembly("Fiap.TechChallenge.Infra")))
+            .AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<SqlServerContext>();
     }
 }

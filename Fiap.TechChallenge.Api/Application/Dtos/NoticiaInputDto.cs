@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Fiap.TechChallenge.Api.Application.Dtos;
 
-public class MemeInputDto
+public class NoticiaInputDto
 {
     [JsonIgnore]
     public bool Valid { get; private set; }
@@ -13,20 +13,13 @@ public class MemeInputDto
     public bool Invalid => !Valid;
     [JsonIgnore]
     public ValidationResult ValidationResult { get; private set; }
-    public IFormFile? Upload { get; set; }
 
+    public string Titulo { get; set; }
+    public string Descricao { get; set; }
+    public string Chapeu { get; set; }
+    public string Autor { get; set; }
 
-    [DisplayName("Nome")]
-    public string Name { get; set; }
-    [DisplayName("Descrição")]
-    public string Description { get; set; }
-    [DisplayName("É video?")]
-    public bool IsVideo { get; set; }
-    public string Base64ImageOrVideoLink { get; set; }
-
-
-
-    public bool Validate(MemeInputDtoValidator validator)
+    public bool Validate(NoticiaInputDtoValidator validator)
     {
         ValidationResult = validator.Validate(this);
         return Valid = ValidationResult.IsValid;

@@ -1,4 +1,4 @@
-﻿using Fiap.TechChallenge.Infra.Repositories.Meme;
+﻿using Fiap.TechChallenge.Infra.Repositories.Noticias;
 
 namespace Fiap.TechChallenge.Infra.Infrastructure;
 
@@ -14,6 +14,6 @@ public class UnitOfWork : IUnitOfWork
     public async Task CommitAsync()
         => await _context.SaveChangesAsync();
 
-    public IMemeRepository MemeRepository
-        => new MemeRepository(_context);
+    public INoticiaRepository NoticiaRepository
+        => new NoticiaRepository(_context);
 }

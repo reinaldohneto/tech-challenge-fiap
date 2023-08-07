@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.TechChallenge.Infra.Infrastructure;
 
-public class SqlServerContext : DbContext
+public class SqlServerContext : IdentityDbContext
 {
     public SqlServerContext(DbContextOptions<SqlServerContext> options) : base(options) { }
 

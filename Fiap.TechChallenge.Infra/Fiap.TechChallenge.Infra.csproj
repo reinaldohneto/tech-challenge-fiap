@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="Maps\Memes\" />
     <Folder Include="Maps\Shared\" />
     <Folder Include="Migrations\" />
     <Folder Include="Repositories\Shared\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
