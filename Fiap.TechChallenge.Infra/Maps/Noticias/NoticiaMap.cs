@@ -28,9 +28,6 @@ public class NoticiaMap : EntityMap<Noticia>
             .HasColumnName("Autor")
             .HasColumnType("VARCHAR(100)");
 
-        builder.Property(m => m.DataPublicacao)
-            .HasColumnName("DataPublicacao");
-
         builder.ToTable("Noticias");
 
         base.Configure(builder);

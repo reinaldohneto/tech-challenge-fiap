@@ -1,8 +1,7 @@
-﻿namespace Fiap.TechChallenge.Api.Application.Dtos;
+namespace Fiap.TechChallenge.Api.Application.Dtos.Noticias;
 
-public record NoticiaDto
+public record NoticiaUpdateDto
 {
-    public Guid Id { get; set; }
     public string Titulo { get; set; }
     public string Descricao { get; set; }
     public string Chapeu { get; set; }

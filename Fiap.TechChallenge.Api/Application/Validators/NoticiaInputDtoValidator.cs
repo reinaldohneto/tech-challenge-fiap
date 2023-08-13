@@ -1,4 +1,4 @@
-﻿using Fiap.TechChallenge.Api.Application.Dtos;
+﻿using Fiap.TechChallenge.Api.Application.Dtos.Noticias;
 using FluentValidation;
 
 namespace Fiap.TechChallenge.Api.Application.Validators;

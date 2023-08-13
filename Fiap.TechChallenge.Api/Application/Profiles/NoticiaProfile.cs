@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Fiap.TechChallenge.Api.Application.Dtos;
+using Fiap.TechChallenge.Api.Application.Dtos.Noticias;
 using Fiap.TechChallenge.Domain.Entities.Noticias;
 
 namespace Fiap.TechChallenge.Api.Application.Profiles;

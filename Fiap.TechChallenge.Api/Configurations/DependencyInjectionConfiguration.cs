@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using Fiap.TechChallenge.Api.Application.Services.Authentication;
 using Fiap.TechChallenge.Api.Application.Services.Noticias;
+using Fiap.TechChallenge.Api.Application.Services.User;
 using Fiap.TechChallenge.Api.Application.Shared;
 using Fiap.TechChallenge.Infra.Infrastructure;
 
@@ -15,5 +17,7 @@ public static class DependencyInjectionConfiguration
         services.AddScoped<NotificationContext>();
 
         services.AddScoped<INoticiaService, NoticiaService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
     }
 }

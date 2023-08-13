@@ -2,7 +2,7 @@ using Fiap.TechChallenge.Api.Application.Validators;
 using FluentValidation.Results;
 using System.Text.Json.Serialization;
 
-namespace Fiap.TechChallenge.Api.Application.Dtos;
+namespace Fiap.TechChallenge.Api.Application.Dtos.Noticias;
 
 public class NoticiaInputUpdateDto
 {

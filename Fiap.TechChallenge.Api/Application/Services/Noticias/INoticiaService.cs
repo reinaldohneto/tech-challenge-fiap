@@ -1,4 +1,4 @@
-﻿using Fiap.TechChallenge.Api.Application.Dtos;
+﻿using Fiap.TechChallenge.Api.Application.Dtos.Noticias;
 
 namespace Fiap.TechChallenge.Api.Application.Services.Noticias;
 
@@ -8,5 +8,5 @@ public interface INoticiaService
     Task<ICollection<NoticiaDto>> GetAllMemes();
     Task<NoticiaDto> GetMemeById(Guid id);
     Task<bool> DeleteMemeById(Guid id);
-    Task UpdateMemeById(NoticiaInputUpdateDto dto);
+    Task<NoticiaDto> UpdateMemeById(NoticiaInputUpdateDto dto);
 }

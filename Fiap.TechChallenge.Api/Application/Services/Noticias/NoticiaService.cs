@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Fiap.TechChallenge.Api.Application.Dtos;
+using Fiap.TechChallenge.Api.Application.Dtos.Noticias;
 using Fiap.TechChallenge.Api.Application.Shared;
 using Fiap.TechChallenge.Api.Application.Validators;
 using Fiap.TechChallenge.Domain.Entities.Noticias;
@@ -64,7 +64,7 @@ public class NoticiaService : INoticiaService
         return meme;
     }
 
-    public async Task UpdateMemeById(NoticiaInputUpdateDto dto)
+    public async Task<NoticiaDto> UpdateMemeById(NoticiaInputUpdateDto dto)
     {
 
         var memeDomain = _mapper.Map<Noticia>(dto);
@@ -72,5 +72,9 @@ public class NoticiaService : INoticiaService
             .NoticiaRepository.Update(memeDomain);
 
         await _unitOfWork.CommitAsync();
+
+        return _mapper.Map<NoticiaDto>(await _unitOfWork
+            .NoticiaRepository
+            .GetById(dto.Id));
     }
 }
